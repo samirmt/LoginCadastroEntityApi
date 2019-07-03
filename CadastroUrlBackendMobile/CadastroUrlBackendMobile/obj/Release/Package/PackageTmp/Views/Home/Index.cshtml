@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CadastroUrlBackendMobile.Models.UrlBackendMobileTable>
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="text-align:right; padding-bottom:10px;"><a href="@Url.Action("Create","UrlBackendMobileTables")" class="btn btn-outline-info">Novo</a></div>
+
+<table id="tabela-url" class="table table-actions table-striped table-hover mb-0 table-responsive-md" data-table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>CNPJ</th>
+            <th>URL</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.id)</td>
+            <td>@Html.DisplayFor(modelItem => item.CNPJ)</td>
+            <td>@Html.DisplayFor(modelItem => item.URL)</td>
+            <td>
+                <div class="dropdown">
+                    <button style="font-size:12px;" type="button" class="btn btn-primary btn-sm dropdown-toggle" id="acoes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ações</button>
+                    <div class="dropdown-menu" aria-labelledby="acoes">
+                        <a style="font-size:13px;" class="dropdown-item" href="@Url.Action("Details","UrlBackendMobileTables", new { id = item.id })">Detalhes</a>
+                        <a style="font-size:13px;" class="dropdown-item" href="@Url.Action("Edit","UrlBackendMobileTables", new { id = item.id })">Editar</a>
+                        <a style="font-size:13px;" class="dropdown-item" href="@Url.Action("Delete","UrlBackendMobileTables", new { id = item.id })">Excluir</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    
+</script>

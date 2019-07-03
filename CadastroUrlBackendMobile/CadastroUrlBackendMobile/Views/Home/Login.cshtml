@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/LayoutLogin.cshtml";
+    var mensagem = TempData["mensagem"];
+}
+
+<div class="row animated fadeInDown">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <div class="form-group">
+                    <img id="profile-img" class="profile-img-card" src="~/Content/img/logo.png" />
+                </div>
+
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-signin" }))
+                {
+                    @Html.AntiForgeryToken();
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" });
+
+                    <div class="form-group" style="text-align:left;">
+                        <label for="user">Usuário:</label>
+                        <input class="form-control form-control-line" id="user" name="user" required autofocus />
+
+                    </div>
+
+                    <div class="form-group" style="text-align:left;">
+                        <label for="pass">Senha:</label>
+                        <input class="form-control form-control-line" id="pass" name="pass" type="password" required />
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">ENTRAR</button>
+                    </div>
+
+                }
+                <div>
+                    <br />
+                    <label class="text-danger">@mensagem</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
