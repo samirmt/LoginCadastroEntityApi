@@ -12,26 +12,18 @@ namespace CadastroUrlBackendMobile.Controllers
     [RoutePrefix("api/url")]
     public class urlController : ApiController
     {
-        static string senha = ConfigurationManager.AppSettings["senha"];
         _Database db = new _Database();
 
         [HttpGet]
         [Route("PegarUrl")]
-        public IHttpActionResult PegarUrl(string cnpj, string chave)
+        public IHttpActionResult PegarUrl(string cnpj)
         {
-            if(chave.Equals(senha)) {
-                if (!string.IsNullOrEmpty(cnpj) && cnpj.Length == 14)
+            if (!string.IsNullOrEmpty(cnpj) && cnpj.Length == 14)
+            {
+                var url = db.urlBackendMobilesTable.FirstOrDefault(x => x.CNPJ.Equals(cnpj));
+				if (url != null)
                 {
-                    var url = db.urlBackendMobilesTable.FirstOrDefault(x => x.CNPJ.Equals(cnpj));
-
-                    if (url != null)
-                    {
-                        return Ok(url);
-                    }
-                    else
-                    {
-                        return Ok("erro");
-                    }
+                    return Ok(url);
                 }
                 else
                 {

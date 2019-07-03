@@ -9,7 +9,7 @@ namespace CadastroUrlBackendMobile.Models
 {
     public class _Database : DbContext
     {
-        public _Database() : base("TID_EXETPS")
+        public _Database() : base("MEUBD")
         {
             Configuration.LazyLoadingEnabled = false;
         }
